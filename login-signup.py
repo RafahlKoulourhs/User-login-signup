@@ -33,13 +33,14 @@ def sign_up():
 
 def login():
     username = input("Enter username for login: ")
-    password = getpass.getpass("Enter password for login: ")
-    if username in users and users[username] == hash_password(password):
-        print("Login successful!")
-        return True
-    else:
-        print("Invalid credentials. Please try again.")
-        return False
+    while True:
+        password = getpass.getpass("Enter password for login: ")
+        if username in users and users[username] == hash_password(password):
+            print("Login successful!")
+            print("Thank you for using my first tool! Follow me on Instagram @_.rafahl.klr._ for more information.")
+            return True
+        else:
+            print("Invalid password. Please try again.")
 
 def main():
     load_users()
