@@ -35,24 +35,23 @@ def login():
     username = input("Enter username for login: ")
     password = getpass.getpass("Enter password for login: ")
     if username in users and users[username] == hash_password(password):
-        print("Logged in successfully")
+        print("Login successful!")
         return True
     else:
-        print("Invalid credentials")
+        print("Invalid credentials. Please try again.")
         return False
 
 def main():
     load_users()
     while True:
         choice = input("Do you have an account? (yes/no/exit): ")
-        if choice.lower() == 'yes':
-            if login():
-                break
-        elif choice.lower() == 'no':
-            if sign_up():
-                print("Now, please log in with your new account.")
-                if login():
-                    break
+        if choice.lower() == 'yes' or choice.lower() == 'no':
+            if choice.lower() == 'no':
+                if sign_up():
+                    print("Sign-up successful! Now, please log in with your new account.")
+            while not login():
+                print("Please try logging in again.")
+            break
         elif choice.lower() == 'exit':
             break
         else:
